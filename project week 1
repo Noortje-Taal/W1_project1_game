@@ -1,0 +1,82 @@
+'''Project week 1 - Build your own game''' 
+
+# importing required libraries
+from random import randint
+from PIL import Image
+
+# random nummer
+random_number = randint(0, 100) 
+
+# welcome 
+def welcome_game():
+    name = input("Hi! Welcome to the game 'Guess the number' \nLet me introduce myself: I am Noortje\n \nWho are you?\n\n")
+    print("\nWhat a pleasure to meet you", name, "\n'Guess the number' is a game in which I will think of a number between 0-100 and you will guess which number it is \nYou can guess 8 times")
+    
+    while True: 
+        try:
+            yes_no = input("\nDo you want to play the game?\n\n") 
+        except ValueError: 
+            continue
+        
+        if yes_no == 'yes' or yes_no == 'Yes'or yes_no == 'YES':
+            return 0
+            break
+        elif yes_no == 'no' or yes_no == 'No' or yes_no == 'NO':
+            print("\nWhat a pity! See you next time and have a nice day", name)
+            return 1 
+            break
+        else: 
+            print("\nI don't understand you, you have to chose yes or no")
+
+# player guess  
+def player_guess():
+    while True: 
+        try:
+            play_guess = int(input("Pick a number between 0 and 100: ")) 
+        except ValueError: 
+            continue
+        
+        if play_guess >= 0 and play_guess <= 100:
+            return play_guess
+            break
+        else: 
+            print("You have to pick a number between 0 and 100, try again!") 
+
+# compare random number & player guess 
+def comparison():
+    guess = player_guess()
+    if guess != random_number: 
+        if guess > random_number:                 
+            print("Your guess is not correct, the number is smaller than", guess, "\nTry again!\n")
+            return 0
+        elif guess < random_number:  
+            print("Your guess is not correct, the number is greater than", guess, "\nTry again!\n")
+            return 0 
+    else:
+        return 1 
+    
+# play the game 
+def play():
+    welcome = welcome_game()  
+    if welcome == 0:
+        print ("Great! Let's play!\n") 
+            
+        wrong = 0 # wrong guess
+        right = 0 # good guess
+            
+        for i in range(8): # max 8 games to guess 
+            compare = comparison() 
+            if compare == 0:
+                wrong += 1
+            elif compare == 1:
+                right += 1
+
+            if wrong == 8: 
+                print ("GAME OVER \nYou can only guess 8 times")
+                break
+            elif right == 1:
+                print ("You guessed the right number, YOU WIN! \nThe number was indeed", random_number) 
+                img = Image.open("/Users/noortjetaal/Desktop/winner.png")
+                img.show() 
+                break 
+play() 
