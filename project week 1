@@ -7,6 +7,10 @@ from PIL import Image
 # random nummer
 random_number = randint(0, 100) 
 
+'''
+L.S. Very nice game! You used functions and the overall structure is very clear. 
+'''
+
 # welcome 
 def welcome_game():
     name = input("Hi! Welcome to the game 'Guess the number' \nLet me introduce myself: I am Noortje\n \nWho are you?\n\n")
@@ -27,6 +31,10 @@ def welcome_game():
             break
         else: 
             print("\nI don't understand you, you have to chose yes or no")
+
+'''
+L.S. Good!
+'''
 
 # player guess  
 def player_guess():
@@ -55,6 +63,10 @@ def comparison():
     else:
         return 1 
     
+'''
+L.S. Very nice to include a picture as well!
+'''
+
 # play the game 
 def play():
     welcome = welcome_game()  
@@ -64,6 +76,11 @@ def play():
         wrong = 0 # wrong guess
         right = 0 # good guess
             
+
+        '''
+        L.S. Minor detail, but it might be good not to 'hardcode' numbers, but pass them as arguments to your function. 
+        '''
+
         for i in range(8): # max 8 games to guess 
             compare = comparison() 
             if compare == 0:
